@@ -132,21 +132,10 @@ fi
 
 ###############################Install Packages#########################################################
 ufw disable
-if [[ ${INSTALL} == *"y"* ]]; then
 
-         version=$(grep -oP '(?<=VERSION_ID=")[0-9]+' /etc/os-release)
-
-         # Проверяем, является ли версия 20 или 22
-        if [[ "$version" == "20" || "$version" == "22" ]]; then
-              echo "Версия системы: Ubuntu $version"
-        fi
-
-	sudo pacman -Sy
-
-	sudo pacman -S curl wget jq bash sudo nginx-full certbot python3-certbot-nginx sqlite3 ufw
-
-	systemctl daemon-reload && systemctl enable --now nginx
-fi
+sudo pacman -S curl wget jq bash sudo nginx-full certbot python3-certbot-nginx sqlite3 ufw
+systemctl daemon-reload && systemctl enable --now nginx
+    
 systemctl stop nginx 
 fuser -k 80/tcp 80/udp 443/tcp 443/udp 2>/dev/null
 ##################################GET SERVER IPv4-6#####################################################

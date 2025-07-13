@@ -133,7 +133,7 @@ fi
 ###############################Install Packages#########################################################
 ufw disable
 
-sudo pacman -S curl wget jq bash sudo nginx-full certbot python3-certbot-nginx sqlite3 ufw
+sudo pacman -S curl wget jq bash sudo nginx certbot certbot-nginx sqlite3 ufw
 systemctl daemon-reload && systemctl enable --now nginx
     
 systemctl stop nginx 

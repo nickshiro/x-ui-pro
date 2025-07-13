@@ -11,7 +11,7 @@ msg_inf		 ' \/ __ | |  | __ |_) |_) / \ '	;
 msg_inf		 ' /\    |_| _|_   |   | \ \_/ '	; echo
 ##################################Variables#############################################################
 XUIDB="/etc/x-ui/x-ui.db";domain="";UNINSTALL="x";INSTALL="n";PNLNUM=1;CFALLOW="n";CLASH=0;CUSTOMWEBSUB=0
-=$(type apt &>/dev/null && echo "apt" || echo "yum" || echo "pacman")
+
 systemctl stop x-ui
 rm -rf /etc/systemd/system/x-ui.service
 rm -rf /usr/local/x-ui

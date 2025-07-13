@@ -88,8 +88,8 @@ done
 UNINSTALL_XUI(){
 	printf 'y\n' | x-ui uninstall
 	rm -rf "/etc/x-ui/" "/usr/local/x-ui/" "/usr/bin/x-ui/"
-	sudo pacman -R nginx nginx-common nginx-core nginx-full python3-certbot-nginx
-	sudo pacman -Rns nginx nginx-common nginx-core nginx-full python3-certbot-nginx
+	sudo pacman -R nginx nginx-common nginx-core certbot-nginx
+	sudo pacman -Rns nginx nginx-common nginx-core certbot-nginx
     sudo pacman -Qdtq | sudo pacman -Rs -
     sudo pacman -Scc
 	rm -rf "/var/www/html/" "/etc/nginx/" "/usr/share/nginx/" 

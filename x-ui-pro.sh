@@ -11,7 +11,7 @@ msg_inf		 ' \/ __ | |  | __ |_) |_) / \ '	;
 msg_inf		 ' /\    |_| _|_   |   | \ \_/ '	; echo
 ##################################Variables#############################################################
 XUIDB="/etc/x-ui/x-ui.db";domain="";UNINSTALL="x";INSTALL="n";PNLNUM=1;CFALLOW="n";CLASH=0;CUSTOMWEBSUB=0
-Pak=$(type apt &>/dev/null && echo "apt" || echo "yum" || echo "pacman")
+=$(type apt &>/dev/null && echo "apt" || echo "yum" || echo "pacman")
 systemctl stop x-ui
 rm -rf /etc/systemd/system/x-ui.service
 rm -rf /usr/local/x-ui
@@ -88,10 +88,10 @@ done
 UNINSTALL_XUI(){
 	printf 'y\n' | x-ui uninstall
 	rm -rf "/etc/x-ui/" "/usr/local/x-ui/" "/usr/bin/x-ui/"
-	$Pak -y remove nginx nginx-common nginx-core nginx-full python3-certbot-nginx
-	$Pak -y purge nginx nginx-common nginx-core nginx-full python3-certbot-nginx
-	$Pak -y autoremove
-	$Pak -y autoclean
+	sudo pacman -R nginx nginx-common nginx-core nginx-full python3-certbot-nginx
+	sudo pacman -Rns nginx nginx-common nginx-core nginx-full python3-certbot-nginx
+    sudo pacman -Qdtq | sudo pacman -Rs -
+    sudo pacman -Scc
 	rm -rf "/var/www/html/" "/etc/nginx/" "/usr/share/nginx/" 
 	crontab -l | grep -v "certbot\|x-ui\|cloudflareips" | crontab -
 }
@@ -141,9 +141,9 @@ if [[ ${INSTALL} == *"y"* ]]; then
               echo "Версия системы: Ubuntu $version"
         fi
 
-	$Pak -y update
+	sudo pacman -Sy
 
-	$Pak -y install curl wget jq bash sudo nginx-full certbot python3-certbot-nginx sqlite3 ufw
+	sudo pacman -S curl wget jq bash sudo nginx-full certbot python3-certbot-nginx sqlite3 ufw
 
 	systemctl daemon-reload && systemctl enable --now nginx
 fi
